@@ -1,6 +1,9 @@
 package com.example.lo53_indoor_positionning_system_android_app.app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -23,6 +26,14 @@ public class DisplayMessageActivity extends ActionBarActivity {
         TextView textView = new TextView(this);
         textView.setTextSize(40);
         textView.setText(message);
+        setContentView(textView);
+
+        //Getting MAC address
+        WifiManager manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = manager.getConnectionInfo();
+        String MAC_address = info.getMacAddress();
+
+        textView.setText(MAC_address);
         setContentView(textView);
     }
 
